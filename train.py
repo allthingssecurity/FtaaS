@@ -20,7 +20,7 @@ def autotrain_llm(model_name, learning_rate, num_epochs, batch_size, block_size,
 
     # Construct the command for training
     command = f"""
-    autotrain llm --train --model {model_name} --project-name jainllama1 --data-path "/content/data/" --text-column text --lr {learning_rate} --batch-size {batch_size} --epochs {num_epochs} --block-size {block_size} --warmup-ratio {warmup_ratio} --lora-r {lora_r} --lora-alpha {lora_alpha} --lora-dropout {lora_dropout} --weight-decay {weight_decay} --gradient-accumulation {gradient_accumulation} {"--fp16" if use_fp16 else ""} {"--use-peft" if use_peft else ""} {"--use-int4" if use_int4 else ""} {"--push-to-hub --token " + hf_token + " --repo-id " + repo_id if push_to_hub else ""}
+    autotrain llm --train --model {model_name} --project-name jainllama1 --data-path "/workspace/data/" --text-column text --lr {learning_rate} --batch-size {batch_size} --epochs {num_epochs} --block-size {block_size} --warmup-ratio {warmup_ratio} --lora-r {lora_r} --lora-alpha {lora_alpha} --lora-dropout {lora_dropout} --weight-decay {weight_decay} --gradient-accumulation {gradient_accumulation} {"--fp16" if use_fp16 else ""} {"--use-peft" if use_peft else ""} {"--use-int4" if use_int4 else ""} {"--push-to-hub --token " + hf_token + " --repo-id " + repo_id if push_to_hub else ""}
     """
     # Start the process
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
@@ -72,4 +72,4 @@ iface = gr.Interface(
 
 )
 
-iface.launch(share=True,debug=True)
+iface.launch(server_port=8888)
