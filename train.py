@@ -12,7 +12,7 @@ def autotrain_llm(model_name, learning_rate, num_epochs, batch_size, block_size,
     df = pd.read_csv(csv_file.name, encoding='utf-8')
     print(df.to_string())
     # Write the DataFrame to data.csv
-    csv_path = "data/train.csv"
+    csv_path = "/workspace/data/train.csv"
     df.to_csv(csv_path, index=False, encoding='utf-8')
     
     
