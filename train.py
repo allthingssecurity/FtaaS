@@ -72,4 +72,4 @@ iface = gr.Interface(
 
 )
 
-iface.launch(server_port=8888)
+iface.launch(share=True,server_port=8888,debug=True)
